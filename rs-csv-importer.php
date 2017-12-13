@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Really Simple CSV Importer
+Plugin Name: Really Simple CSV Importer (Forked)
 Plugin URI: http://wordpress.org/plugins/really-simple-csv-importer/
 Description: Import posts, categories, tags, custom fields from simple csv file.
 Author: Takuro Hishikawa
@@ -361,25 +361,29 @@ class RS_CSV_Importer extends WP_Importer {
 				 * Filter post data.
 				 *
 				 * @param array $post (required)
+				 * @param array $meta
+				 * @param array $tax
 				 * @param bool $is_update
 				 */
-				$post = apply_filters( 'really_simple_csv_importer_save_post', $post, $is_update );
+				$post = apply_filters( 'really_simple_csv_importer_save_post', $post, $meta, $tax, $is_update );
 				/**
 				 * Filter meta data.
 				 *
 				 * @param array $meta (required)
 				 * @param array $post
+				 * @param array $tax
 				 * @param bool $is_update
 				 */
-				$meta = apply_filters( 'really_simple_csv_importer_save_meta', $meta, $post, $is_update );
+				$meta = apply_filters( 'really_simple_csv_importer_save_meta', $meta, $post, $tax, $is_update );
 				/**
 				 * Filter taxonomy data.
 				 *
 				 * @param array $tax (required)
 				 * @param array $post
+				 * @param array $meta
 				 * @param bool $is_update
 				 */
-				$tax = apply_filters( 'really_simple_csv_importer_save_tax', $tax, $post, $is_update );
+				$tax = apply_filters( 'really_simple_csv_importer_save_tax', $tax, $post, $meta, $is_update );
 				/**
 				 * Filter thumbnail URL or path.
 				 *
